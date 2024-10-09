@@ -35,10 +35,8 @@ if ($_POST) {
     header('location: index.php');
 }
 
-if ($_GET) {
 
-    var_dump($_GET) ;
-}
+
 
 // foreach ($array as $key => $value) {
 //     # code...
@@ -59,6 +57,7 @@ if ($_GET) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Colores preferidos</title>
+    <link rel="shortcut icon" href="img/RGB_Circle_1-80_icon-icons.com_57282.svg" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -106,7 +105,10 @@ if ($_GET) {
                     <div class="error">
                         <p>No se permite ese color</p>
                     </div>
-                    <button type="submit">Enviar</button>
+                    <div class="buttons">
+                        <button type="submit">Enviar</button>
+                        <button type="reset" >Borrar</button>
+                    </div>
                 </form>
 
             <?php endif; ?>
@@ -115,13 +117,19 @@ if ($_GET) {
                 <h2>Modifica tus preferencias</h2>
                 <form method="get" action="update.php">
                     <label for="usuario">Escribe tu nombre:</label>
-                    <input type="text" id="usuario" name="usuario" required>
+                    <input type="text" id="usuario" name="usuario" value="<?= $_GET['user'] ?>">
                     <label for="color">Tu color favorito es...</label>
-                    <input type="text" id="color" name="color" required>
+                    <input type="text" id="color" name="color" value="<?= $_GET['color'] ?>" >
+                    <input type="text" id="id" name="id" value="<?= $_GET['id'] ?>" hidden>
                     <div class="error">
                         <p>No se permite ese color</p>
                     </div>
-                    <button type="submit">Enviar</button>
+                    <div class="buttons">
+                       <button type="submit" name="submit" value="submit">Enviar</button>
+                       <!--   <button type="submit" name="submit" value="reset">Cancelar</button> -->
+                        <a href="index.php" class="button"><button type="button">Cancelar</button></a>
+                    </div>
+                    
                 </form>
 
             <?php endif; ?>
@@ -129,6 +137,8 @@ if ($_GET) {
 
         </section>
     </main>
+
+    <script src="js/script.js"></script>
 </body>
 
 </html>
